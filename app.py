@@ -11,13 +11,21 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 st.title('Aplication project II - Jalisco education storytelling')
 
-st.markdown('## 1. Property')
-st.markdown('### Main variable to analize')
-
-principal_radio = st.radio(
+st.markdown('## Choose dataset to analyse')
+database_radio = st.radio(
         '',
-         ['AULAS_EXISTENTES','AULAS_USO','BENEFICIARIOS_ALIMENTOS_DIF_2014_digit','CONECTIVIDAD_mbs']
+         ['PROPERTY','INVESTMENT','PERFORMANCE','PERSONAL']
     )
+
+if database_radio=='PROPERTY':
+    st.markdown('### Main variable to analize')
+    principal_radio = st.radio(
+            '',
+            ['AULAS_EXISTENTES','AULAS_USO','BENEFICIARIOS_ALIMENTOS_DIF_2014_digit','CONECTIVIDAD_mbs']
+        )
+
+
+
 
 st.markdown('### Chose the type of the second variable')
 
