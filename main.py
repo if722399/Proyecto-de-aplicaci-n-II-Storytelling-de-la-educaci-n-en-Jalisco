@@ -23,10 +23,12 @@ jalisco = jalisco[list(jalisco.keys())[0]]
 
 
 
+property = ['AULAS_EXISTENTES','AULAS_USO','BENEFICIARIOS_ALIMENTOS_DIF_2014_digit','CONECTIVIDAD_mbs']
+investment = []
+performance = []
+personal = []
 
-
-
-
+total_variables = ['MATRICULA_TOTAL'] + property + investment + performance + personal 
 
 
 

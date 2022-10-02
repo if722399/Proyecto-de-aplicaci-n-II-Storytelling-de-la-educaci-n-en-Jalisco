@@ -4,6 +4,8 @@ import main as mn
 import visualizations as vs
 import plotly.express as px
 import functions as fn
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 
 # Disable warning 
@@ -18,11 +20,30 @@ database_radio = st.radio(
     )
 
 if database_radio=='PROPERTY':
-    st.markdown('### Main variable to analize')
+    st.markdown('### Main variable to analyze')
     principal_radio = st.radio(
             '',
-            ['AULAS_EXISTENTES','AULAS_USO','BENEFICIARIOS_ALIMENTOS_DIF_2014_digit','CONECTIVIDAD_mbs']
+            mn.property
         )
+elif database_radio=='INVESTMENT':
+    st.markdown('### Main variable to analyze')
+    principal_radio = st.radio(
+            '',
+            mn.investment
+        )
+elif database_radio=='PERFORMANCE':
+    st.markdown('### Main variable to analyze')
+    principal_radio = st.radio(
+            '',
+            mn.performance
+        )
+elif database_radio=='PERSONAL':
+    st.markdown('### Main variable to analyze')
+    principal_radio = st.radio(
+            '',
+            mn.personal
+        )
+
 
 
 
@@ -52,27 +73,26 @@ if v_type == 'Numeric':
     st.text(f'Rows: {principal_radio}')
     st.write(mn.df[[principal_radio]+[numeric_box]].groupby(principal_radio)[numeric_box].agg(['sum','describe']))
 
+
+    categoric_box = st.selectbox(
+        'Choose a categoric variable',
+        mn.categoric_performers.columns
+    )
+
+    st.markdown(f'#### Contrasting variables grouping by {categoric_box}')
+    st.plotly_chart(vs.dax_viz(principal_radio,numeric_box,categoric_box))
+    
     show_map = st.checkbox('Show Map')
     if show_map:
+        st.text('Mean by municipality')
         st.pyplot(vs.map_viz(principal_radio))
-
-
-    import plotly.graph_objects as go
-    from plotly.subplots import make_subplots
-    show_dax = st.checkbox('Show Double Y Axis Plot')
-    if show_dax:
-        st.plotly_chart(vs.dax_viz(principal_radio,numeric_box))
-
-
-
-        #st.plotly_chart(vs.double_ax_plot(mn.df.MUNICIPIO,mn.df[principal_radio],mn.df[numeric_box]))
 
 
     # Categoric pendiente
 
 if v_type == 'Categoric':
     categoric_box = st.selectbox(
-        'Choose a numeric variable',
+        'Choose a categoric variable',
         mn.categoric_performers.columns
     )
 
@@ -80,3 +100,14 @@ if v_type == 'Categoric':
     st.text(f'Columns: {principal_radio}')
     st.text(f'Rows: {categoric_box}')
     st.write(mn.df[[categoric_box]+[principal_radio]].groupby(categoric_box)[principal_radio].agg(['sum','describe']))
+
+    
+    c_min,c_max = fn.categoric_grouped(mn.df,categoric_box,principal_radio,mn.total_variables)
+
+    st.markdown(f'Information of the min value of the variable: {principal_radio}')
+    st.dataframe(c_min)
+
+    st.markdown(f'Information of the max value of the variable: {principal_radio}')
+    st.dataframe(c_max)
+
+

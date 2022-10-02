@@ -46,25 +46,25 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 
-def dax_viz(v1,v2):
+def dax_viz(v1,v2,title):
         # Create figure with secondary y-axis
         fig = make_subplots(specs=[[{"secondary_y": True}]])
 
 
         # Add traces
         fig.add_trace(
-        go.Scatter(x=mn.df.MUNICIPIO, y=mn.df[v1], name=str(v1)),
+        go.Scatter(x=mn.df[title], y=mn.df[v1], name=str(v1)),
         secondary_y=False,
         )
 
         fig.add_trace(
-        go.Scatter(x=mn.df.MUNICIPIO, y=mn.df[v2], name=str(v2)),
+        go.Scatter(x=mn.df[title], y=mn.df[v2], name=str(v2)),
         secondary_y=True,
         )
 
         # Add figure title
         fig.update_layout(
-        title_text="Contrasting variable by municipality",
+        title_text=f"Contrasting variable by {title}]",
         autosize=False,
         width=950,
         height=700

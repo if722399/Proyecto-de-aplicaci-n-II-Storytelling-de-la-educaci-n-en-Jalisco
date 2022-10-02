@@ -32,3 +32,9 @@ def get_corr(v1,v2,numeric_performers):
     for i in range(len(corr_v)):
         if corr_v.index[i]==v2:
             return(f'{v2} is the **Top {i}** most correlated variable to {v1}. **Correlation: {np.round(corr_v.loc[v2],4)}**')
+
+def categoric_grouped(df,groupby,main_v,total_variables):
+    df_g = df.groupby([groupby]).sum()[total_variables]
+    df_g_min = df_g[df_g[main_v]==df_g[main_v].min()]
+    df_g_max = df_g[df_g[main_v]==df_g[main_v].max()]
+    return df_g_min,df_g_max
