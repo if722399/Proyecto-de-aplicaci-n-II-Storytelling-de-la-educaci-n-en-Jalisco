@@ -7,7 +7,7 @@ En este repositorio se encuentra el segundo proyecto de aplicación del laborato
 * Performance
 * Personal
 <br>
-se desarrolló un análisis con el cual se pudo describir de manera clara la situación en esos años de la educación en Jalisco.
+se desarrolló un análisis con el cual se pudo describir de manera clara la situación en esos años de la educación en Jalisco, estos hallazgos se fueron registrando en el archivo **notebook.ipynb.**
 <br><br>
 
 ## Desarrollo
