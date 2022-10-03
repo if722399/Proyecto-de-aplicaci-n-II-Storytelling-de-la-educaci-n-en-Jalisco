@@ -23,9 +23,9 @@ def map_viz(col):
             'SAN MARTIN DE BOLAÃ\x83Â\x83Ã\x82Â\x83Ã\x83Â\x82Ã\x82Â\x91OS': 'SAN MARTIN DE BOLANOS',
             'TLAJOMULCO DE ZUÃ\x83Â\x83Ã\x82Â\x83Ã\x83Â\x82Ã\x82Â\x91IGA': 'TLAJOMULCO DE ZUNIGA'}
 
-    data['MUNICIPIO'].replace(ugly_dict, inplace=True)
+    data['municipio'].replace(ugly_dict, inplace=True)
 
-    mean = data.groupby('MUNICIPIO').mean()[col]
+    mean = data.groupby('municipio').mean()[col]
 
     jalisco_merged = pd.merge(jalisco,mean, left_on='NOMBRE', right_index=True)
 
