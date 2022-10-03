@@ -22,7 +22,7 @@ De esta manera el notebook queda libre de código y se utiliza principalmente pa
 ## Funcionalidades
 Dentro de la aplicación se pueden elegir distintas configuraciones para realizar el análisis, los pasos para realizar esta configuración son las siguientes:
 * Elegir el dataset a analizar.
-* Elegir la principal variable del análisis.
+* Elegir la variable principal del análisis.
 * Elegir si la segunda variable con la cual se va a contrastar y realizar el análisis cruzado será numérica o categórica.
 * Elegir la segunda variable correpondiente al tipo que se eligió previamente.
 * Observar métricas y visualizaciones para el registro de hallazgos.
